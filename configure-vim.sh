@@ -50,7 +50,7 @@ TARGET_NAME="Set-up VIM config"
     echo 'hi Tb_VisibleNormal ctermbg=252 ctermfg=235' >> ~/.vimrc &&
     echo 'hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white' >> ~/.vimrc &&
 
-    $GRN $TARGET_NAME
+    echo $TARGET_NAME": Done!" 2>&1 >> ./install.log
 } || {
-    $RED $TARGET_NAME
+    echo $TARGET_NAME": Error!" 2>&1 >> ./install.log
 }

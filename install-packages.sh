@@ -7,9 +7,12 @@ GEN_PKG='curl wget autoconf bison build-essential libssl-dev libyaml-dev libread
 DEV_PKG='vim tree tmux ranger htop docker docker-compose git'
 
 {
-    sudo apt update && sudo apt upgrade -y && sudo apt install -y $GEN_PKG &&
-    sudo apt install -y $DEV_PKG &&
-    $GRN $TARGET_NAME
+    sudo apt update 2>&1 >> ./install.log && 
+    sudo apt upgrade -y 2>&1 >> ./install.log && 
+    sudo apt install -y $GEN_PKG 2>&1 >> ./install.log &&
+    sudo apt install -y $DEV_PKG 2>&1 >> ./install.log &&
+    
+    echo $TARGET_NAME": Done!" 2>&1 >> ./install.log
 } || {
-    $RED $TARGET_NAME
+    echo $TARGET_NAME": Error!" 2>&1 >> ./install.log
 }

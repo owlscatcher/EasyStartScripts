@@ -57,9 +57,9 @@ TARGET_NAME="Set Bash and ZSH aliases"
     echo 'alias packup="sudo apt update && sudo apt upgrade -y"' >> ~/.zshrc &&
     echo 'alias get-aliases="sh /usr/local/bin/get-aliases.sh"' >> ~/.zshrc &&
 
-    sudo mv get-aliases.sh /usr/local/bin && chmod +x /usr/local/bin/get-aliases.sh &&
+    sudo mv get-aliases.sh /usr/local/bin && chmod +x /usr/local/bin/get-aliases.sh 2>&1 >> ./install.log &&
 
-    $GRN $TARGET_NAME
+    echo $TARGET_NAME": Done!" 2>&1 >> ./install.log
 } || {
-    $RED $TARGET_NAME
+    echo $TARGET_NAME": Error!" 2>&1 >> ./install.log
 }

@@ -5,13 +5,14 @@ TARGET_NAME="Install netcore 6.0"
 V='20.04'
 
 {
-    wget https://packages.microsoft.com/config/ubuntu/$V/packages-microsoft-prod.deb -O packages-microsoft-prod.deb &&
-    sudo dpkg -i packages-microsoft-prod.deb &&
-    rm packages-microsoft-prod.deb &&
+    wget https://packages.microsoft.com/config/ubuntu/$V/packages-microsoft-prod.deb -O packages-microsoft-prod.deb 2>&1 >> ./install.log &&
+    sudo dpkg -i packages-microsoft-prod.deb 2>&1 >> ./install.log &&
+    rm packages-microsoft-prod.deb 2>&1 >> ./install.log &&
 
-    sudo apt update && sudo apt install -y dotnet-sdk-6.0 aspnetcore-runtime-6.0 &&
+    sudo apt update 2>&1 >> ./install.log && 
+    sudo apt install -y dotnet-sdk-6.0 aspnetcore-runtime-6.0 2>&1 >> ./install.log &&
 
-    $GRN $TARGET_NAME
+    echo $TARGET_NAME": Done!" 2>&1 >> ./install.log
 } || {
-    $RED $TARGET_NAME
+    echo $TARGET_NAME": Error!" 2>&1 >> ./install.log
 }
